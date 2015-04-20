@@ -1,0 +1,18 @@
+c:\users\tony nguyen\documents\visual studio 2013\Projects\Homework\Homework\bin\Homework.dll.config
+c:\users\tony nguyen\documents\visual studio 2013\Projects\Homework\Homework\bin\Homework.dll
+c:\users\tony nguyen\documents\visual studio 2013\Projects\Homework\Homework\bin\Homework.pdb
+c:\users\tony nguyen\documents\visual studio 2013\Projects\Homework\Homework\bin\Homework.xml
+c:\users\tony nguyen\documents\visual studio 2013\Projects\Homework\Homework\obj\Debug\Homework.Resources.resources
+c:\users\tony nguyen\documents\visual studio 2013\Projects\Homework\Homework\obj\Debug\Homework.vbproj.GenerateResource.Cache
+c:\users\tony nguyen\documents\visual studio 2013\Projects\Homework\Homework\obj\Debug\Homework.dll
+c:\users\tony nguyen\documents\visual studio 2013\Projects\Homework\Homework\obj\Debug\Homework.xml
+c:\users\tony nguyen\documents\visual studio 2013\Projects\Homework\Homework\obj\Debug\Homework.pdb
+C:\Users\Nabil\Downloads\Homework\Homework\bin\Homework.dll.config
+C:\Users\Nabil\Downloads\Homework\Homework\bin\Homework.dll
+C:\Users\Nabil\Downloads\Homework\Homework\bin\Homework.pdb
+C:\Users\Nabil\Downloads\Homework\Homework\bin\Homework.xml
+C:\Users\Nabil\Downloads\Homework\Homework\obj\Debug\Homework.Resources.resources
+C:\Users\Nabil\Downloads\Homework\Homework\obj\Debug\Homework.vbproj.GenerateResource.Cache
+C:\Users\Nabil\Downloads\Homework\Homework\obj\Debug\Homework.dll
+C:\Users\Nabil\Downloads\Homework\Homework\obj\Debug\Homework.xml
+C:\Users\Nabil\Downloads\Homework\Homework\obj\Debug\Homework.pdb

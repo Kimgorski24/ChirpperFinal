@@ -1,0 +1,203 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Chirpper Application</title>
+
+    <!--<link href="Content/bootstrap.css" rel="stylesheet" />-->
+
+    <link href="Style.css" rel="stylesheet" />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://nabilchirps.firebaseio-demo.com/.json"></script>
+    <script src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
+    <!--
+    This demo has 2 full CRUD scripts. Be sure to change the paths/firebase urls as needed.
+        - myToDos_v1.js         - global scope
+        - myToDos_v2.js         - local scope via IIFE
+        - myToDos_v2_other.js   - local scope via IIFE, rendering on the same page
+
+    -->
+</head>
+<body>
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+
+                <nav class="navbar navbar-default" role="navigation">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#">Cobra</a>
+                    </div>
+
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li class="active">
+                                <a href="#">Chirps</a>
+                            </li>
+                            <li>
+                                <a href="#">Favorites</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Timelines<strong class="caret"></strong></a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="#">Action</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Another action</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Something else here</a>
+                                    </li>
+                                    <li class="divider">
+                                    </li>
+                                    <li>
+                                        <a href="#">Separated link</a>
+                                    </li>
+                                    <li class="divider">
+                                    </li>
+                                    <li>
+                                        <a href="#">One more separated link</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <form class="navbar-form navbar-left" role="search">
+                            <div class="form-group">
+                                <input type="text" class="form-control" />
+                            </div> <button type="submit" class="btn btn-default">Search</button>
+                        </form>
+                    </div>
+
+                </nav>
+            </div>
+
+            <!-- Page Content -->
+            <div id="page-content-wrapper">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-4 column">
+                            <div id="profile" style="background-color:#a1cfd9">
+                                <h2>
+                                    Profile<br />
+                                </h2>
+                                <img src="data:image/jpeg;base64,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" class="img-rounded">
+
+                                <ul>
+                                    <li>Username: Nabil</li>
+                                    <li>Name: Nabil Rhiati</li>
+                                    <li>Age: 125</li>
+                                    <li>Howntown: Austin,TX</li>
+                                </ul>
+                            </div>
+
+                            <div id="friends" style="background-color:#a1cfd9">
+                                <h2>Friends</h2>
+                                <ul>
+                                    <li>
+                                        <p>Username: CrazyAZN</p>
+                                        <img src="http://s2.quickmeme.com/img/3e/3e893cb199219590fc87a39d5bd6008ed5c8852291acde1ce1ceae1d20e76add.jpg" class="img-rounded">
+
+                                    </li>
+                                    <li>
+                                        <p>Username: cdrgirl</p>
+                                        <img src="http://www.phootoscelebrities.com/wp-content/uploads/2014/06/Angelina-Jolie-wallpapers.jpg" class="img-rounded">
+                                    </li>
+                                    <li>
+                                        <p>Username: Mike</p>
+                                        <img src="http://salmonriverresources.com/wp-content/uploads/2015/03/hawaiian-islands-beach-sunset-GwWz-50x50.jpg" class="img-rounded">
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <span class="glyphicon glyphicon-comment"></span> All Chirps
+                                </div>
+                                <div class="panel-body">
+                                    <ul class="chat">
+                                        <li class="left clearfix">
+                                            <span class="chat-img pull-left">
+                                                <img src="data:image/jpeg;base64,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" class="img-circle">
+                                            </span>
+                                            <div class="chat-body clearfix">
+                                                <div class="header">
+                                                    <strong class="primary-font">Nabil</strong>
+                                                    <small class="pull-right text-muted">
+                                                        <span id="timeSpan" class="glyphicon glyphicon-time"></span>
+                                                        12 mins ago
+                                                    </small>
+                                                </div>
+                                                <p>
+                                                    Hello, Everyone in Coder Camps
+                                                </p>
+                                            </div>
+                                        </li>
+
+                                        <li id="myChirp" class="left clearfix"></li>
+                                    </ul>
+                                </div>
+                                <div class="panel-footer">
+                                    <div class="input-group">
+                                        <input id="todotext" type="text" class="form-control input-group-sm" placeholder="Username" />
+                                        <input id="todocompleted" type="text" class="form-control input-sm" placeholder="Type your message here..." />
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-primary" id="addtodo" onclick="doaddtodo()">Chirp</button>
+                                            
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <!-- /#page-content-wrapper -->
+        </div>
+    </div>
+
+    <div class="row clearfix">
+        <div class="">
+            <div class="row-fixed">
+               
+                <div class="col-lg-8">
+                    <!-- tiny only nav-->
+                    <div class="well">
+                        <!-- Logic for displaying CHIRPS line 74 HTML -->
+                        <form class="form-horizontal" role="form">
+                            <h4>Send Message!</h4>
+                            <div class="form-group" style="padding:14px;">
+                                <textarea onkeypress="onKeyPress(event)" id="chirp-input" class="form-control" placeholder="Update your status"></textarea>
+                            </div>
+                            <button onclick="createTweet()" class="btn btn-primary pull-right" type="button">Send Chirp!</button><ul class="list-inline"><li>
+                        </form>
+                    </div>
+                    <div class="col-lg-pull-8 ">
+                        <!-- Logic for displaying FRIENDS line 91 HTML -->
+                        <div class="panel panel-default">
+                            <div class="panel-heading"><h4>Most Recent Chirps</h4><a href="#">Chirps<span class="badge" id="newChirps"></span></a></div>
+                            <!-- Display Chirps-->
+                            <div id="chirp-display" class="panel-body"></div>
+                            <!-- End Display Chirps-->
+                        </div>
+                        <!-- End Friends DIV-->
+                    </div>
+                </div>
+            </div>
+            <!--Modal Fiends Profile-->
+        </div>
+    </div>
+    <!--Needs to be unique to the CRUD script-->
+    <div id="ToDoList"> </div>
+
+    <hr />
+    <script src="Scripts/moment.js"></script>
+    <script src="Chatapp.js"></script>
+</body>
+</html>
